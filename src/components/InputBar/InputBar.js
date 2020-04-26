@@ -27,7 +27,7 @@ export class InputBar extends React.Component {
                     </div>
 
                     <div className="InputBar-submit">
-                        <input type="submit">Let's Go</input>
+                        <input type="submit" />
                     </div>
                 </form>
 
