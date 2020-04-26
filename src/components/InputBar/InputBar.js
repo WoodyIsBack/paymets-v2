@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './InputBar.css';
+import { submitPaymentToDb } from '../../server/api.js'
 
 export class InputBar extends React.Component {
     render() {
@@ -19,15 +21,15 @@ export class InputBar extends React.Component {
 
                 <form>
                     <div className="InputBar-fields">
-                        <input type="text" placeholder="Who are you?" />
-                        <input type="date" placeholder="When?" />
-                        <input type="date"placeholder="From" />
-                        <input type="date"placeholder="To" />
-                        <input type="number" placeholder="Enter Amount" />
+                        <input id="user" type="text" placeholder="Who are you?" />
+                        <input id="date" type="date" placeholder="Payment Date" />
+                        <input id="from" type="date"placeholder="From" />
+                        <input id="to" type="date"placeholder="To" />
+                        <input id="amount" type="number" placeholder="Enter Amount" />
                     </div>
 
                     <div className="InputBar-submit">
-                        <input type="submit" />
+                        <a onClick={submitPaymentToDb} id="Submit">Let's Go</a>
                     </div>
                 </form>
 
@@ -37,4 +39,5 @@ export class InputBar extends React.Component {
         
     }
 }
+
 export default InputBar; 
