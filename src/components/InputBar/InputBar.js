@@ -1,9 +1,38 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import mysql from 'mysql';
 import './InputBar.css';
 import { submitPaymentToDb } from '../../server/api.js'
 
 export class InputBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.submitPaymentToDb = this.submitPaymentToDb.bind(this);
+    }
+
+    submitPaymentToDb(ev) {
+        var config =  {
+            host: "localhost",
+            port: "3306",
+            user: "itai",
+            password: "Payments1!",
+            database: "payments"
+        };
+        ev.preventDefault(); //stops browser submmiting form
+        let payment = {
+            user: document.getElementById('user').value,
+            paymentDate: document.getElementById('date').value,
+            from: document.getElementById('from').value,
+            to: document.getElementById('to').value,
+            amount: document.getElementById('amount').value,
+            notes: 'none'
+        }
+        document.getElementById('payment-form').reset(); // Clears the form
+    
+        var xmlhttp = new XMLHttpRequest;
+        xmlhttp.open("POST", "", true);
+        xmlhttp.send();
+    }
+
     render() {
         return (
             <div className="InputBar">
@@ -19,7 +48,7 @@ export class InputBar extends React.Component {
                     </ul>
                 </div>
 
-                <form>
+                <form id="payment-form">
                     <div className="InputBar-fields">
                         <input id="user" type="text" placeholder="Who are you?" />
                         <input id="date" type="date" placeholder="Payment Date" />
@@ -29,7 +58,7 @@ export class InputBar extends React.Component {
                     </div>
 
                     <div className="InputBar-submit">
-                        <a onClick={submitPaymentToDb} id="Submit">Let's Go</a>
+                        <a onClick={this.submitPaymentToDb} id="Submit">Let's Go</a>
                     </div>
                 </form>
 

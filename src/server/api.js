@@ -9,8 +9,8 @@ var config =  {
   };
 
 
-const submitPaymentToDb = (ev) => {
-    ev.preventDefault(); //stops browser submmiting form
+const submitPaymentToDb = () => {
+    //ev.preventDefault(); //stops browser submmiting form
     let payment = {
         user: document.getElementById('user').value,
         paymentDate: document.getElementById('date').value,
@@ -19,7 +19,7 @@ const submitPaymentToDb = (ev) => {
         amount: document.getElementById('amount').value,
         notes: 'none'
     }
-    document.forms[0].reset(); // Clears the form
+    document.getElementById('payment-form').reset(); // Clears the form
 
     var con = mysql.createConnection(config);
     
